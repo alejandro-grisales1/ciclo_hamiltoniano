@@ -57,8 +57,9 @@ void controller::inicializar()
                     break; // Salir del bucle del menú secundario
 
                 case '5':
-                    exit(0); // Salir del programa
-                    break;   // Salir del bucle del menú secundario
+                  lista.liberarMemoria();
+                  exit(0); // Salir del programa
+                  break;   // Salir del bucle del menú secundario
 
                 default:
                     cout << "Opción inválida." << endl;
@@ -71,6 +72,7 @@ void controller::inicializar()
             break;
         case '5':
             cout << "Saliendo del programa..." << endl;
+            lista.liberarMemoria();
             salir = true; // Salir del programa
             break;
         default:

@@ -12,20 +12,28 @@ struct Node {
     
     Node* next;
 
-    // Constructor
+    //constructor
+    /* Node(int x_val, int y_val) {
+      this->x = x_val;
+      this->y = y_val;
+      this->next = NULL;
+    } */
+
+    // Constructor en una linea
     Node(int x_val, int y_val) : x(x_val), y(y_val), next(nullptr) {}
 };
 
 // Definición de la estructura de la lista enlazada
 struct LinkedList {
-    Node* head;
+  Node *head;
 
-    // Constructor
-    LinkedList() : head(nullptr) {}
+  // Constructor
+  LinkedList() : head(nullptr) {}
 
-    // Método para crear un nuevo nodo
-    Node* crearNodo(int x, int y) {
-        return new Node(x, y);
+  // Método para crear un nuevo nodo
+  Node *crearNodo(int x, int y)
+  {
+    return new Node(x, y);
     }
 
     // Método para agregar un nodo al final de la lista
@@ -44,10 +52,17 @@ struct LinkedList {
 
     // Método para mostrar los nodos de la lista
     void display() {
+        if (head == nullptr) {
+        cout << "No hay nodos guardados." << endl;
+        return;
+        }
+
+        cout << "Nodos guardados:" << endl;
+        int ind = 0;
         Node* temp = head;
         int i = 1;
         while (temp != nullptr) {
-            cout << "Nodo " << i++ << ": (" << temp->x << ", " << temp->y << ")" << endl;
+            cout << "Índice " << ind++ << " Nodo " << i++ << ": (" << temp->x << ", " << temp->y << ")" << endl;
             temp = temp->next;
         }
     }

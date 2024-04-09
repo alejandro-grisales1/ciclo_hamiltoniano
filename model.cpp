@@ -1,7 +1,6 @@
 #include "model.h"
 
 using namespace std;
-
 model::model(){}
 
 void model::agregarNodo(LinkedList& lista) {
@@ -15,31 +14,20 @@ void model::agregarNodo(LinkedList& lista) {
 }
 
 void model::eliminarNodo(LinkedList& lista) {
-    if (lista.head == nullptr) {
-        cout << "No hay nodos guardados." << endl;
-        return;
-    }
+  lista.display();
 
-    cout << "Nodos guardados:" << endl;
-    int ind = 0;
-    Node* temp = lista.head;
-    while (temp != nullptr) {
-        cout << "Índice " << ind << ": Coordenada x: " << temp->x << ", Coordenada y: " << temp->y << endl;
-        temp = temp->next;
-        ind++;
-    }
+  int indice;
+  cout << "Ingrese el índice del nodo que desea eliminar: ";
+  cin >> indice;
 
-    int indice;
-    cout << "Ingrese el índice del nodo que desea eliminar: ";
-    cin >> indice;
-
-    Node* current = lista.head;
-    Node* prev = nullptr;
-    int contador = 0;
-    while (current != nullptr && contador < indice) {
-        prev = current;
-        current = current->next;
-        contador++;
+  Node *current = lista.head;
+  Node *prev = nullptr;
+  int contador = 0;
+  while (current != nullptr && contador < indice)
+  {
+    prev = current;
+    current = current->next;
+    contador++;
     }
 
     if (current != nullptr && contador == indice) {
@@ -56,28 +44,19 @@ void model::eliminarNodo(LinkedList& lista) {
 }
 
 void model::consultarActualizarNodo(LinkedList& lista) {
-    if (lista.head == nullptr) {
-        cout << "No hay nodos guardados." << endl;
-        return;
-    }
+  lista.display();
 
-    cout << "Nodos guardados:" << endl;
-    int indice = 0;
-    Node* temp = lista.head;
-    while (temp != nullptr) {
-        cout << "Índice " << indice << ": Coordenada x: " << temp->x << ", Coordenada y: " << temp->y << endl;
-        temp = temp->next;
-        indice++;
-    }
+  Node *temp = lista.head;
+  int indice = 0;
+  cout << "Ingrese el número de índice del nodo que desea consultar o actualizar:" << endl;
+  cin >> indice;
 
-    cout << "Ingrese el número de índice del nodo que desea consultar o actualizar:" << endl;
-    cin >> indice;
-
-    temp = lista.head;
-    int contador = 0;
-    while (temp != nullptr && contador < indice) {
-        temp = temp->next;
-        contador++;
+  temp = lista.head;
+  int contador = 0;
+  while (temp != nullptr && contador < indice)
+  {
+    temp = temp->next;
+    contador++;
     }
 
     if (temp != nullptr && contador == indice) {
@@ -132,7 +111,7 @@ double** model::calcularDistancias(const LinkedList& lista) {
                 distancias[i][j] = calcularDistancia(temp, temp2);
             } else {
                 // Manejo de error: si uno de los nodos es nulo, asignar una distancia grande
-                distancias[i][j] = std::numeric_limits<double>::infinity();
+                distancias[i][j] = numeric_limits<double>::infinity();
             }
             temp2 = temp2->next;
         }
@@ -198,7 +177,7 @@ void model::vecinoMasCercano(const LinkedList& lista) {
     }
 
     // Matriz de distancias
-    double** distancias = calcularDistancias(lista); // Revisar esta función
+    double** distancias = calcularDistancias(lista);
 
     // Arreglo para almacenar el camino
     int* camino = new int[cantidadNodos + 1]; // +1 para el nodo inicial al final del camino
